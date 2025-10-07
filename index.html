@@ -72,6 +72,44 @@
 	    </button>
 
     <img id="dishImage" src="dishes/japan_dish.jpg" width="300" style="display: none; margin-top: 10px;">
+		
+<script>
+  const dishImages = [
+    'japan_dish.jpg',
+  ];
+
+  function revealCountryDish() {
+    const dishImageElement = document.getElementById('dishImage');
+    dishImageElement.src = 'dishes/japan_dish.jpg';
+    dishImageElement.style.display = 'block';
+  }
+
+  function newGameBtn() {
+document.getElementById("newGameBtn").addEventListener("click",()=>{
+  resetRound();
+  pickNewTarget(); // will auto-show flag if checkbox is checked
+
+  document.getElementById('dishImage').style.display = 'none';
+});
+  
+  }
+
+  function giveUpBtn() {
+document.getElementById("giveUpBtn").addEventListener("click",()=>{
+  if(!targetName || solved || gaveUp) return;
+  gaveUp=true;
+  statusEl.innerHTML="Gave up. Target was <b>"+targetName+"</b>.";
+  updateSharePreview();
+
+  document.getElementById('dishImage').style.display = 'none';
+});
+ 
+  }
+window.addEventListener("DOMContentLoaded", () => {
+    giveUpBtn();
+    newGameBtn();
+  });
+</script>
 
 
       <form id="guessForm" style="display:flex; gap:8px; align-items:center; margin-bottom:8px;">
